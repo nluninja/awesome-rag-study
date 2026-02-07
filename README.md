@@ -1,12 +1,16 @@
-# Awesome RAG Study
+# Awesome RAG Study [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-A curated collection of papers, frameworks, tools, and resources on **Retrieval-Augmented Generation (RAG)** — maintained for students of the *Text Mining and Data Visualization* course as a starting point for thesis research.
+> A curated collection of papers, frameworks, tools, and resources on Retrieval-Augmented Generation (RAG).
 
-> **What is RAG?** Retrieval-Augmented Generation is a technique that enhances Large Language Models (LLMs) by grounding their responses in external knowledge retrieved at inference time, reducing hallucinations and enabling domain-specific answers without fine-tuning.
+Maintained for students of the *Text Mining and Data Visualization* course as a starting point for thesis research.
+
+## What is RAG?
+
+Retrieval-Augmented Generation is a technique that enhances Large Language Models (LLMs) by grounding their responses in external knowledge retrieved at inference time, reducing hallucinations and enabling domain-specific answers without fine-tuning.
 
 ---
 
-## Table of Contents
+## Contents
 
 - [Foundational Papers](#foundational-papers)
 - [Survey Papers](#survey-papers)
@@ -23,34 +27,31 @@ A curated collection of papers, frameworks, tools, and resources on **Retrieval-
 - [Videos and Talks](#videos-and-talks)
 - [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Contributing](#contributing)
+- [License](#license)
 
 ---
 
 ## Foundational Papers
 
-| Paper | Year | Key Contribution |
-|-------|------|------------------|
-| [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) | 2020 | The original RAG paper by Lewis et al. (Meta AI). Introduces the RAG architecture combining a pre-trained seq2seq model with a dense retriever (DPR). |
-| [Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906) | 2020 | DPR — the dense retrieval method that underpins many RAG systems. |
-| [REALM: Retrieval-Augmented Language Model Pre-Training](https://arxiv.org/abs/2002.08909) | 2020 | Pre-trains a language model jointly with a knowledge retriever. |
-| [Attention Is All You Need](https://arxiv.org/abs/1706.03762) | 2017 | The Transformer architecture — foundational to all modern LLMs used in RAG. |
+- **[Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)** (2020) - The original RAG paper by Lewis et al. (Meta AI). Introduces the RAG architecture combining a pre-trained seq2seq model with a dense retriever (DPR).
+- **[Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906)** (2020) - DPR — the dense retrieval method that underpins many RAG systems.
+- **[REALM: Retrieval-Augmented Language Model Pre-Training](https://arxiv.org/abs/2002.08909)** (2020) - Pre-trains a language model jointly with a knowledge retriever.
+- **[Attention Is All You Need](https://arxiv.org/abs/1706.03762)** (2017) - The Transformer architecture — foundational to all modern LLMs used in RAG.
 
 ## Survey Papers
 
-| Paper | Year | Notes |
-|-------|------|-------|
-| [Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/abs/2312.10997) | 2023 | Comprehensive survey covering Naive RAG, Advanced RAG, and Modular RAG paradigms. Excellent starting point. |
-| [A Survey on RAG Meeting LLMs: Towards Retrieval-Augmented Large Language Models](https://arxiv.org/abs/2405.06211) | 2024 | Covers the evolution of RA-LLMs, taxonomies, and training strategies. |
-| [Seven Failure Points When Engineering a RAG System](https://arxiv.org/abs/2401.05856) | 2024 | Practical guide to what can go wrong in RAG pipelines — highly recommended for thesis work. |
+- **[Retrieval-Augmented Generation for Large Language Models: A Survey](https://arxiv.org/abs/2312.10997)** (2023) - Comprehensive survey covering Naive RAG, Advanced RAG, and Modular RAG paradigms. Excellent starting point.
+- **[A Survey on RAG Meeting LLMs: Towards Retrieval-Augmented Large Language Models](https://arxiv.org/abs/2405.06211)** (2024) - Covers the evolution of RA-LLMs, taxonomies, and training strategies.
+- **[Seven Failure Points When Engineering a RAG System](https://arxiv.org/abs/2401.05856)** (2024) - Practical guide to what can go wrong in RAG pipelines — highly recommended for thesis work.
 
 ## Advanced Techniques
 
 ### Chunking and Indexing
 
-- [Unstructured](https://github.com/Unstructured-IO/unstructured) — Pre-processing library for parsing PDFs, HTML, Word docs into clean chunks.
-- [Semantic Chunking](https://arxiv.org/abs/2312.06648) — Splitting documents based on semantic similarity rather than fixed token windows.
-- **Hierarchical Indexing** — Using summaries at different granularity levels (document → section → paragraph) to improve retrieval precision.
-- **Parent-Child Chunking** — Retrieve small chunks for precision, but pass the parent (larger) chunk to the LLM for context.
+- **[Unstructured](https://github.com/Unstructured-IO/unstructured)** - Pre-processing library for parsing PDFs, HTML, Word docs into clean chunks.
+- **[Semantic Chunking](https://arxiv.org/abs/2312.06648)** - Splitting documents based on semantic similarity rather than fixed token windows.
+- **Hierarchical Indexing** - Using summaries at different granularity levels (document → section → paragraph) to improve retrieval precision.
+- **Parent-Child Chunking** - Retrieve small chunks for precision, but pass the parent (larger) chunk to the LLM for context.
 
 ### Retrieval Strategies
 
@@ -60,21 +61,21 @@ A curated collection of papers, frameworks, tools, and resources on **Retrieval-
 | **Sparse Retrieval (BM25)** | Traditional keyword-based retrieval. Still competitive and often used as a baseline. |
 | **Hybrid Search** | Combine dense + sparse retrieval (e.g., via Reciprocal Rank Fusion). Often outperforms either alone. |
 | **Multi-Query Retrieval** | Generate multiple query variations with an LLM and retrieve for each, then merge results. |
-| **HyDE** | [Hypothetical Document Embeddings](https://arxiv.org/abs/2212.10496) — Generate a hypothetical answer first, then use it as the retrieval query. |
-| **Contextual Retrieval** | [Anthropic's approach](https://www.anthropic.com/news/contextual-retrieval) — Prepend chunk-specific context before embedding to reduce retrieval failures. |
+| **HyDE** | [Hypothetical Document Embeddings](https://arxiv.org/abs/2212.10496) - Generate a hypothetical answer first, then use it as the retrieval query. |
+| **Contextual Retrieval** | [Anthropic's approach](https://www.anthropic.com/news/contextual-retrieval) - Prepend chunk-specific context before embedding to reduce retrieval failures. |
 
 ### Reranking
 
-- [Cohere Rerank](https://docs.cohere.com/docs/reranking) — Cross-encoder reranking API.
-- [ColBERT](https://arxiv.org/abs/2004.12832) — Late interaction model for efficient and effective reranking.
-- [bge-reranker](https://huggingface.co/BAAI/bge-reranker-v2-m3) — Open-source cross-encoder reranker by BAAI.
-- [RankLLM](https://arxiv.org/abs/2309.15088) — Using LLMs themselves as rerankers via listwise prompting.
+- **[Cohere Rerank](https://docs.cohere.com/docs/reranking)** - Cross-encoder reranking API.
+- **[ColBERT](https://arxiv.org/abs/2004.12832)** - Late interaction model for efficient and effective reranking.
+- **[bge-reranker](https://huggingface.co/BAAI/bge-reranker-v2-m3)** - Open-source cross-encoder reranker by BAAI.
+- **[RankLLM](https://arxiv.org/abs/2309.15088)** - Using LLMs themselves as rerankers via listwise prompting.
 
 ### Query Transformation
 
-- **Query Rewriting** — Use an LLM to reformulate the user query for better retrieval.
-- **Step-Back Prompting** — [Paper](https://arxiv.org/abs/2310.06117) — Ask a more abstract question first to retrieve broader context.
-- **Query Decomposition** — Break complex questions into sub-questions, retrieve for each, then synthesize.
+- **Query Rewriting** - Use an LLM to reformulate the user query for better retrieval.
+- **[Step-Back Prompting](https://arxiv.org/abs/2310.06117)** - Ask a more abstract question first to retrieve broader context.
+- **Query Decomposition** - Break complex questions into sub-questions, retrieve for each, then synthesize.
 
 ### Evaluation
 
@@ -127,18 +128,18 @@ A curated collection of papers, frameworks, tools, and resources on **Retrieval-
 
 ## Tutorials and Guides
 
-- [RAG From Scratch (LangChain)](https://github.com/langchain-ai/rag-from-scratch) — Series of notebooks covering RAG concepts from basics to advanced patterns.
-- [Building RAG Applications with LlamaIndex](https://docs.llamaindex.ai/en/stable/getting_started/concepts/) — Official LlamaIndex documentation and conceptual guide.
-- [Pinecone RAG Learning Center](https://www.pinecone.io/learn/retrieval-augmented-generation/) — Well-written introduction to RAG with practical examples.
-- [Anthropic's Contextual Retrieval Guide](https://www.anthropic.com/news/contextual-retrieval) — Practical improvements to standard RAG with contextual embeddings and BM25.
-- [Full Stack RAG App Tutorial (freeCodeCamp)](https://www.youtube.com/watch?v=sVcwVQRHIc8) — Video walkthrough of building a complete RAG application.
+- **[RAG From Scratch (LangChain)](https://github.com/langchain-ai/rag-from-scratch)** - Series of notebooks covering RAG concepts from basics to advanced patterns.
+- **[Building RAG Applications with LlamaIndex](https://docs.llamaindex.ai/en/stable/getting_started/concepts/)** - Official LlamaIndex documentation and conceptual guide.
+- **[Pinecone RAG Learning Center](https://www.pinecone.io/learn/retrieval-augmented-generation/)** - Well-written introduction to RAG with practical examples.
+- **[Contextual Retrieval Guide](https://www.anthropic.com/news/contextual-retrieval)** - Practical improvements to standard RAG with contextual embeddings and BM25.
+- **[Full Stack RAG App Tutorial (freeCodeCamp)](https://www.youtube.com/watch?v=sVcwVQRHIc8)** - Video walkthrough of building a complete RAG application.
 
 ## Videos and Talks
 
-- [But what is RAG? (3Blue1Brown-style explainer)](https://www.youtube.com/watch?v=T-D1OfcDW1M) — Visual, intuitive explanation of how RAG works.
-- [RAG is Dead? Long Live RAG! (Keynote)](https://www.youtube.com/watch?v=JGpmQvlYRdQ) — Discussion on the future of RAG vs. long-context models.
-- [Building Production RAG (AI Engineer Summit)](https://www.youtube.com/watch?v=jENqvjpkwmw) — Practical lessons from deploying RAG at scale.
-- [Advanced RAG Techniques (DeepLearning.AI)](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) — Short course by Andrew Ng's platform.
+- **[But what is RAG? (3Blue1Brown-style explainer)](https://www.youtube.com/watch?v=T-D1OfcDW1M)** - Visual, intuitive explanation of how RAG works.
+- **[RAG is Dead? Long Live RAG! (Keynote)](https://www.youtube.com/watch?v=JGpmQvlYRdQ)** - Discussion on the future of RAG vs. long-context models.
+- **[Building Production RAG (AI Engineer Summit)](https://www.youtube.com/watch?v=jENqvjpkwmw)** - Practical lessons from deploying RAG at scale.
+- **[Advanced RAG Techniques (DeepLearning.AI)](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/)** - Short course by Andrew Ng's platform.
 
 ## Datasets and Benchmarks
 
@@ -154,17 +155,17 @@ A curated collection of papers, frameworks, tools, and resources on **Retrieval-
 
 ## Contributing
 
-This is a collaborative resource for students and researchers. To contribute:
+Contributions are welcome! This is a collaborative resource for students and researchers.
 
+Please follow these guidelines:
 1. Fork this repository
 2. Add your resource in the appropriate section
-3. Include a brief description of why the resource is useful
-4. Submit a pull request
-
-Please ensure all links are working and resources are relevant to RAG study.
-
----
+3. Follow the existing format: `**[Resource Name](link)** - Brief description.`
+4. Ensure all links are working and resources are relevant to RAG
+5. Submit a pull request
 
 ## License
 
-[CC0 1.0 Universal](LICENSE) — This work is dedicated to the public domain.
+[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+This work is dedicated to the public domain under [CC0 1.0 Universal](LICENSE).
