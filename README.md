@@ -76,6 +76,7 @@ Retrieval-Augmented Generation is a technique that enhances Large Language Model
 - **Query Rewriting** - Use an LLM to reformulate the user query for better retrieval.
 - **[Step-Back Prompting](https://arxiv.org/abs/2310.06117)** - Ask a more abstract question first to retrieve broader context.
 - **Query Decomposition** - Break complex questions into sub-questions, retrieve for each, then synthesize.
+- **[ExpandR: Teaching Dense Retrievers Beyond Queries with LLM Guidance](https://aclanthology.org/2025.emnlp-main.963/)** (EMNLP 2025 Oral) - Jointly optimizes LLM-based query expansion and the dense retriever.
 
 ### Evaluation
 
